@@ -1,0 +1,146 @@
+SELECT * FROM penggunaan_air WHERE date BETWEEN ("2018-09-15 00:00:00") AND ("2018-09-15  23:59:59") && id_pelanggan=='12345' && ORDER BY id   DESC LIMIT 10;
+
+SELECT * FROM penggunaan_air WHERE date BETWEEN ("2018-09-15 00:00:00") AND ("2018-09-15  23:59:59") && id_pelanggan='12345' LIMIT 10;
+
+SELECT * FROM penggunaan_air WHERE date BETWEEN ("2018-09-15 00:00:00") AND ("2018-09-15  23:59:59") && id_pelanggan=='12345' ORDER BY id   DESC LIMIT 10
+
+
+SELECT * FROM penggunaan_air WHERE date BETWEEN ("2018-09-14 00:00:00") AND ("2018-09=14 23:59:59") ORDER BY id DESC Limit 1
+
+SELECT * FROM penggunaan_air WHERE date BETWEEN ("2018-09-15 00:00:00") AND ("2018-09=15 23:59:59") ORDER BY id DESC
+
+SELECT * FROM penggunaan_air WHERE date BETWEEN ("2018-09-15 00:00:00") AND ("2018-09-15  23:59:59") && id_pelanggan='12345' order by id DESC
+
+SELECT * FROM penggunaan_air WHERE date BETWEEN ("2018-09-15 00:00:00") AND ("2018-09-15  23:59:59") && id_pelanggan='56789' order by id DESC
+
+SELECT COUNT(value) AS ave FROM penggunaan_air WHERE date BETWEEN ('2018-09-17 00:00:00') AND ('2018-09-17 23:59:59') && id_pelanggan='56789' ORDER BY ID DESC
+
+SELECT SUM(value) AS ave FROM penggunaan_air WHERE date BETWEEN ('2018-09-17 00:00:00') AND ('2018-09-17 23:59:59') && id_pelanggan='56789' ORDER BY ID DESC
+
+select * from penggunaan_air where month(`date`)='09' and year(`date`) = '2018'
+
+SELECT MONTH(`date`) FROM penggunaan_air GROUP BY MONTH(`date`)  tampil berdasarkan bulan
+
+SELECT MONTH(`date`) AS bulan, sum(`value`) as jumlah_perbulan FROM penggunaan_air GROUP BY MONTH(`date`) menampilkan jumlah berdasarkan bulan
+
+SELECT pelanggan.nama, MONTH(`date`) AS bulan, sum(`value`) as jumlah_perbulan FROM penggunaan_air, pelanggan where penggunaan_air.id_pelanggan = pelanggan.id_pelanggan GROUP BY month(`date`), penggunaan_air.id_pelanggan
+
+SELECT pelanggan.nama, MONTH(`date`) AS bulan, sum(`value`) as jumlah_perbulan FROM penggunaan_air, pelanggan where penggunaan_air.id_pelanggan = pelanggan.id_pelanggan GROUP BY month(`date`), penggunaan_air.id_pelanggan DESC
+
+SELECT pelanggan.nama, MONTH(`date`) AS bulan, sum(`value`) as jumlah_perbulan FROM penggunaan_air, pelanggan where penggunaan_air.id_pelanggan = pelanggan.id_pelanggan && month(`date`) < 6 GROUP BY month(`date`), penggunaan_air.id_pelanggan DESC
+
+SELECT id_pelanggan,month(date) as bulan, sum(value) as tot_value FROM penggunaan_air GROUP by id_pelanggan , MONTH(date)
+
+SELECT pelanggan.nama, MONTH(`date`) = 1 AS bulan1, MONTH(`date`) = 2 AS bulan2, MONTH(`date`) = 3 AS bulan3, MONTH(`date`) = 4 AS bulan4, MONTH(`date`) = 5 AS bulan5, sum(`value`) = MONTH(`date`) = 1 as jumlah_perbulan FROM penggunaan_air, pelanggan where penggunaan_air.id_pelanggan = pelanggan.id_pelanggan GROUP BY pelanggan.id_pelanggan,month(`date`)
+
+SELECT id_pelanggan, nama,
+	sum(if(month(`date`) = 1, `value`,0)) as bulan1,
+    sum(if(month(`date`) = 2, `value`,0)) as bulan2,
+    sum(if(month(`date`) = 3, `value`,0)) as bulan3,
+    sum(if(month(`date`) = 4, `value`,0)) as bulan4,
+    sum(if(month(`date`) = 5, `value`,0)) as bulan5
+FROM penggunaan_air
+LEFT JOIN pelanggan USING(id_pelanggan) 
+GROUP BY id_pelanggan
+
+SELECT id_pelanggan, nama,
+	sum(if(month(`date`) = 6, `value`,0)) as bulan1,
+    sum(if(month(`date`) = 7, `value`,0)) as bulan2,
+    sum(if(month(`date`) = 8, `value`,0)) as bulan3,
+    sum(if(month(`date`) = 9, `value`,0)) as bulan4,
+    sum(if(month(`date`) = 10, `value`,0)) as bulan5
+FROM penggunaan_air 
+LEFT JOIN pelanggan USING(id_pelanggan) WHERE month(`date`) <11
+GROUP BY id_pelanggan
+
+$hitung_5bulan_end =  date("m") + 5;
+                 $selisih_bulan =  date("m") - 5;
+                 echo $hitung_5bulan_end;
+                 echo $selisih_bulan;
+                
+                 for ($i=$selisih_bulan; $i < date("m") ; $i++) { 
+                    if ($i ==  $hitung_5bulan_end) {
+                        break;
+                    }
+                    else{
+                        
+                     echo "bulan ke dari for";
+                     echo $i;
+                     
+                     echo "<br />";
+                     
+                      }
+                 }
+
+ for ($i=$selisih_bulan; $i < date("m") ; $i++) { 
+                     echo "bulan ke dari for";
+                     echo $i;
+                     echo "<br />";
+
+                 }
+
+
+$hitung_5bulan_end =  date("m") + 5;
+                 $selisih_bulan =  date("m") - 5;
+
+                 //echo $hitung_5bulan_end;
+                 //echo $selisih_bulan;
+                 $no_ke = 1;
+                 for ($i=$selisih_bulan; $i < date("m") ; $i++) { 
+                     //echo "bulan ke dari for : ";
+                     //echo $i;
+                     //echo $no_ke++;
+                    if ($i == 0) {
+                        $i=12;
+                    }
+                     $bulanke[$no_ke++] = $i;
+                     echo $zzz = date("m") -$i;
+                     
+                     //echo $zzz;
+                     //echo "<br />";                   
+
+                 }
+                 echo "<br>ini array";
+                echo $bulanke[1];
+                echo $bulanke[2];
+                echo $bulanke[3];
+                echo $bulanke[4];
+                echo $bulanke[5];
+
+SELECT id_pelanggan, nama, jk, tipe, sum(if(month(`date`) = $bulanke[1], `value`,0)) as bulan1, sum(if(month(`date`) = $bulanke[2], `value`,0)) as bulan2, sum(if(month(`date`) = $bulanke[3], `value`,0)) as bulan3, sum(if(month(`date`) = $bulanke[4], `value`,0)) as bulan4, sum(if(month(`date`) = $bulanke[5], `value`,0)) as bulan5 FROM penggunaan_air LEFT JOIN pelanggan USING(id_pelanggan) GROUP BY id_pelanggan asc
+
+SELECT id_pelanggan, nama, jk, tipe, sum(if(month(`date`) = 6, `value`,0)) as bulan1, sum(if(month(`date`) = 7, `value`,0)) as bulan2, sum(if(month(`date`) = 8, `value`,0)) as bulan3, sum(if(month(`date`) = 9, `value`,0)) as bulan4, sum(if(month(`date`) = 10, `value`,0)) as bulan5 FROM penggunaan_air LEFT JOIN pelanggan USING(id_pelanggan) GROUP BY id_pelanggan asc
+
+SELECT id_pelanggan, nama, jk, tipe, sum(if(month(`date`) = 6, `value`,0)) as bulan1, sum(if(month(`date`) = 7, `value`,0)) as bulan2, sum(if(month(`date`) = 8, `value`,0)) as bulan3, sum(if(month(`date`) = 9, `value`,0)) as bulan4, sum(if(month(`date`) = 10, `value`,0)) as bulan5 FROM penggunaan_air LEFT JOIN pelanggan USING(id_pelanggan) WHERE YEAR(`date`) = 2018 GROUP BY id_pelanggan asc
+
+SELECT id_pelanggan, nama, jk, tipe, sum(if(month(`date`) = 6 & year(`date`) = 2019, `value`,0)) as bulan1, sum(if(month(`date`) = 7 & year(`date`) = 2019, `value`,0)) as bulan2, sum(if(month(`date`) = 8 & year(`date`) = 2019, `value`,0)) as bulan3, sum(if(month(`date`) = 9 & year(`date`) = 2019, `value`,0)) as bulan4, sum(if(month(`date`) = 10 & year(`date`) = 2019, `value`,0)) as bulan5 FROM penggunaan_air LEFT JOIN pelanggan USING(id_pelanggan) GROUP BY id_pelanggan asc
+
+SELECT tipe, sum(if(month(`date`) = 6, `value`,0)) as bulan1
+FROM penggunaan_air LEFT JOIN pelanggan USING(id_pelanggan) GROUP BY id_pelanggan asc
+
+$query = "SELECT id_pelanggan, nama, jk, tipe,
+    sum(if(month(`date`) = $bulanke[1] && year(`date`) = 2018, `value`,0)) as bulan1,
+    sum(if(month(`date`) = $bulanke[2] && year(`date`) = 2018, `value`,0)) as bulan2,
+    sum(if(month(`date`) = $bulanke[3] && year(`date`) = 2018, `value`,0)) as bulan3,
+    sum(if(month(`date`) = $bulanke[4] && year(`date`) = 2018, `value`,0)) as bulan4,
+    sum(if(month(`date`) = $bulanke[5] && year(`date`) = 2018, `value`,0)) as bulan5
+FROM penggunaan_air LEFT JOIN pelanggan USING(id_pelanggan) GROUP BY id_pelanggan asc";
+
+$querycek = "SELECT * from limabulanan WHERE siklus= '5bulan1' && id_pelanggan = '12345'";
+            $resultcek = mysqli_query($con, $querycek);
+
+            if (mysqli_num_rows($resultcek) > 0) {
+                echo "sudah ada";
+            }
+            else {
+                echo "belum ada";
+            }
+
+SELECT pelanggan.tipe, limabulanan.total FROM `limabulanan`,`pelanggan` WHERE limabulanan.total < 10 && pelanggan.tipe = "A" || limabulanan.total < 15 && pelanggan.tipe = "B" || limabulanan.total < 20 && pelanggan.tipe = "C" GROUP BY limabulanan.id_pelanggan
+
+SELECT AVG(total) AS Mean,
+    STDDEV_POP(total) AS STD_Rendah
+    
+FROM limabulanan WHERE statusnya='Rendah' && bulan =
+
+SELECT total, statusnya FROM `limabulanan` WHERE statusnya = 'Rendah' && bulan = 8
